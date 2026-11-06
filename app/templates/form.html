@@ -1,0 +1,155 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-white py-3">
+                <h4 class="mb-0">{{ page_title }}</h4>
+            </div>
+
+            <div class="card-body">
+                <form method="post" action="{{ form_action }}">
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input
+                            type="text"
+                            name="full_name"
+                            class="form-control {% if errors.get('full_name') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('full_name', '') }}"
+                            placeholder="Enter full name"
+                            required
+                        >
+                        {% if errors.get('full_name') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('full_name') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Date of Birth</label>
+                        <input
+                            type="text"
+                            name="date_of_birth"
+                            class="form-control {% if errors.get('date_of_birth') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('date_of_birth', '') }}"
+                            placeholder="dd/mm/yyyy"
+                            required
+                        >
+                        {% if errors.get('date_of_birth') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('date_of_birth') }}
+                            </div>
+                        {% endif %}
+                        <div class="form-text">
+                            Accepted formats: dd/mm/yyyy, dd.mm.yyyy or dd-mm-yyyy.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email Address</label>
+                        <input
+                            type="text"
+                            name="email"
+                            class="form-control {% if errors.get('email') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('email', '') }}"
+                            placeholder="example@email.com"
+                            required
+                        >
+                        {% if errors.get('email') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('email') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <hr>
+
+                    <h5 class="mb-3">Blood Test Results</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Glucose (mg/dL)</label>
+                        <input
+                            type="number"
+                            step="any"
+                            name="glucose"
+                            min="20"
+                            max="800"
+                            class="form-control {% if errors.get('glucose') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('glucose', '') }}"
+                            required
+                        >
+                        {% if errors.get('glucose') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('glucose') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Haemoglobin (g/dL)</label>
+                        <input
+                            type="number"
+                            step="any"
+                            name="haemoglobin"
+                            min="3"
+                            max="25"
+                            class="form-control {% if errors.get('haemoglobin') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('haemoglobin', '') }}"
+                            required
+                        >
+                        {% if errors.get('haemoglobin') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('haemoglobin') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cholesterol (mg/dL)</label>
+                        <input
+                            type="number"
+                            step="any"
+                            name="cholesterol"
+                            min="50"
+                            max="600"
+                            class="form-control {% if errors.get('cholesterol') %}is-invalid{% endif %}"
+                            value="{{ form_data.get('cholesterol', '') }}"
+                            required
+                        >
+                        {% if errors.get('cholesterol') %}
+                            <div class="invalid-feedback">
+                                {{ errors.get('cholesterol') }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {% if errors.get('general') %}
+                        <div class="alert alert-danger">
+                            {{ errors.get('general') }}
+                        </div>
+                    {% endif %}
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Save Patient
+                        </button>
+
+                        <a href="/" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

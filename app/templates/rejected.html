@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block title %}Rejected Submissions{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h2 class="fw-bold">Rejected Submissions</h2>
+    <p class="text-muted">
+        Submissions that failed validation are recorded here.
+    </p>
+</div>
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Submitted At</th>
+                    <th>Submitted Data</th>
+                    <th>Validation Errors</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.id }}</td>
+
+                    <td>
+                        {{ submission.submitted_at.strftime("%d/%m/%Y %H:%M") }}
+                    </td>
+
+                    <td>
+                        <details>
+                            <summary>View submitted data</summary>
+                            <ul class="mt-2">
+                                {% for key, value in submission.raw_input.items() %}
+                                    <li>
+                                        <strong>{{ key }}:</strong> {{ value }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </details>
+                    </td>
+
+                    <td>
+                        {% for field, error in submission.errors.items() %}
+                            <div class="text-danger small">
+                                <strong>{{ field }}:</strong> {{ error }}
+                            </div>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center py-5">
+                        No rejected submissions found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
