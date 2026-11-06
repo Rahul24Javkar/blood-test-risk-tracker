@@ -93,7 +93,7 @@ Before running the application, ensure you have:
 ### 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/Rahul24Javkar/blood-test-risk-tracker
 cd blood-test-risk-tracker
 ```
 
